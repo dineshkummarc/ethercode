@@ -18,9 +18,9 @@ ss.server.on('ready', function(){
     });
 
     window.load = function(src) {
-      var script = document.createElement('script');
-      script.src = src;
-      document.body.appendChild(script);
+      var fixture = document.createElement('script');
+      fixture.src = src;
+      document.body.appendChild(fixture);
     }
 
     ss.event.on('update', function(message, id) {
@@ -48,9 +48,24 @@ ss.server.on('ready', function(){
       }, 500);
     });
 
+    ss.event.on('mode', function(language) {
+      editor.setOption('mode', language); 
+      if (language == 'javascript') {
+        $('#run').show();
+      }
+      else {
+        $('#run').hide();
+      }
+    });
+
     $('#run').click(function(e) {
       $('#run').text('Updating');
       return ss.rpc('editor.run');
+    });
+
+    $('.language').click(function(e) {
+      var language = $(this).text().toLowerCase();
+      return ss.rpc('editor.mode', language);
     });
   });
 

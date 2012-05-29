@@ -7,6 +7,10 @@ exports.actions = function(req, res, ss) {
       return res(true);
     },
 
+    mode: function(language) {
+      ss.publish.all('mode', language);
+    },
+
     run: function(message, pad) {
       ss.publish.all('run');
     }
