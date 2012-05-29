@@ -50,6 +50,16 @@ ss.server.on('ready', function(){
 
     ss.event.on('mode', function(language) {
       editor.setOption('mode', language); 
+
+      $('.language').each(function() {
+        if ($(this).text().toLowerCase() == language) {
+          $(this).addClass('selected');
+        }
+        else {
+          $(this).removeClass('selected');
+        }
+      });
+
       if (language == 'javascript') {
         $('#run').show();
       }
