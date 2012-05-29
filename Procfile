@@ -1,1 +1,1 @@
-web: node app.js
+web: SS_ENV=production node app.js
